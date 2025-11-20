@@ -1,0 +1,6 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-pretendard: var(--font-pretendard), sans-serif;
+  --font-yidstreet: var(--font-yidstreet), sans-serif;
+}
