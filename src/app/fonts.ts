@@ -52,19 +52,10 @@ export const pretendard = localFont({
   variable: '--font-pretendard',
 });
 
-export const Yidstreet = localFont({
-  src: [
-    {
-      path: '../fonts/Yidstreet/YdestreetL.woff2',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/Yidstreet/YdestreetB.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
+export const asset = localFont({
+  src: '../fonts/asset/asset.woff2',
+  weight: '400',
+  style: 'normal',
   display: 'swap',
-  variable: '--font-yidstreet',
+  variable: '--font-asset',
 });

@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 
 import type { Metadata } from 'next';
 
-import { pretendard, Yidstreet } from './fonts';
+import { asset, pretendard } from './fonts';
 
 export const metadata: Metadata = {
   title: 'Happingo',
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${pretendard.variable} ${Yidstreet.variable}`}>
+    <html lang="ko" className={`${pretendard.variable} ${asset.variable}`}>
       <body className="font-pretendard">{children}</body>
     </html>
   );
