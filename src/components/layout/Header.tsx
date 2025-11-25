@@ -2,6 +2,8 @@ import Link from 'next/link';
 
 import Logo from '@/assets/icons/logo.svg';
 
+import HeaderNav from './HeaderNav';
+
 const Header = () => {
   const today = new Date();
   const year = today.getFullYear();
@@ -10,10 +12,11 @@ const Header = () => {
 
   return (
     <header className="mt-5 px-3">
-      <div className="text-2xs flex items-center justify-between sm:text-xs">
+      <div className="text-2xs flex items-center justify-between font-light sm:text-xs">
         <span>{year}</span>
         <p>
-          매달 나만의 행복 미션 빙고 ㅡ <strong>해핑고</strong>
+          매달 나만의 행복 미션 빙고 ㅡ{' '}
+          <strong className="font-medium">해핑고</strong>
         </p>
         <span>{monthLabel}</span>
       </div>
@@ -22,6 +25,7 @@ const Header = () => {
           <Logo className="text-text" />
         </Link>
       </div>
+      <HeaderNav />
     </header>
   );
 };
