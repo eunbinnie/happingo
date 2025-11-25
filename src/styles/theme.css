@@ -1,0 +1,21 @@
+@theme {
+  /* fonts */
+  --font-pretendard: var(--font-pretendard), sans-serif;
+  --font-asset: var(--font-asset), sans-serif;
+
+  /* colors */
+  --color-background: var(--background);
+  --color-text: var(--text);
+}
+
+@layer base {
+  :root {
+    --background: #f3f6f9;
+    --text: #1f4e8c;
+  }
+
+  [data-theme='dark'] {
+    --background: #071424;
+    --text: #e5edf7;
+  }
+}
