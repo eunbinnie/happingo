@@ -1,3 +1,7 @@
+import Link from 'next/link';
+
+import Logo from '@/assets/icons/logo.svg';
+
 const Header = () => {
   return (
     <header className="mt-5 px-3">
@@ -8,7 +12,11 @@ const Header = () => {
         </p>
         <span>11</span>
       </div>
-      <h1 className="font-asset text-center text-3xl">HAPPINGO</h1>
+      <div className="mt-2">
+        <Link href="/">
+          <Logo />
+        </Link>
+      </div>
     </header>
   );
 };
