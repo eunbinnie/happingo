@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header className="mt-5 px-3">
-      <div className="text-2xs flex items-center justify-between font-light sm:text-xs">
+      <div className="text-2xs dark:text-text/60 flex items-center justify-between font-light sm:text-xs">
         <span>{year}</span>
         <p>
           매달 나만의 행복 미션 빙고 ㅡ{' '}

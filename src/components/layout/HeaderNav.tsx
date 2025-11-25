@@ -6,7 +6,7 @@ const Separator = () => {
 
 const HeaderNav = () => {
   return (
-    <nav className="mt-8 flex items-center justify-between text-sm">
+    <nav className="dark:text-text/60 mt-8 flex flex-wrap items-center justify-between gap-x-2 text-xs sm:text-sm">
       <div className="flex items-center gap-1">
         <span>0 BINGO</span>
         <Separator />
