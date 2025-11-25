@@ -7,7 +7,7 @@ import { cn } from '@/lib/cn';
 
 const ThemeChanger = () => {
   const { theme, setTheme } = useTheme();
-  const isLight = theme === 'light';
+  const isLight = theme !== 'dark';
 
   return (
     <div
