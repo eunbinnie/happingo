@@ -1,6 +1,2 @@
 @import 'tailwindcss';
-
-@theme {
-  --font-pretendard: var(--font-pretendard), sans-serif;
-  --font-asset: var(--font-asset), sans-serif;
-}
+@import './theme.css';
