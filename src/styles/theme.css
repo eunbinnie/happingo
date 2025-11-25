@@ -6,6 +6,9 @@
   /* colors */
   --color-background: var(--background);
   --color-text: var(--text);
+
+  /* font-size */
+  --text-2xs: 0.5625rem; /* 9px */
 }
 
 @layer base {

@@ -1,10 +1,12 @@
-import ThemeChanger from '@/components/button/ThemeChanger';
+import Header from '@/components/layout/Header';
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center font-bold break-all">
-      <ThemeChanger />
-      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    </main>
+    <>
+      <Header />
+      <main className="flex flex-col items-center justify-center font-bold break-all">
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      </main>
+    </>
   );
 }
