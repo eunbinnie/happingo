@@ -7,7 +7,7 @@ import { asset, pretendard } from './fonts';
 
 export const metadata: Metadata = {
   title: 'Happingo',
-  description: '해피 빙고',
+  description: '해피 빙고 HAPPINGO',
 };
 
 export default function RootLayout({
@@ -22,7 +22,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="font-pretendard bg-background text-text">
-        <ThemeProvider storageKey="happingo-theme">{children}</ThemeProvider>
+        <ThemeProvider storageKey="happingo-theme">
+          <div className="mx-auto min-h-screen max-w-[600px]">{children}</div>
+        </ThemeProvider>
       </body>
     </html>
   );
