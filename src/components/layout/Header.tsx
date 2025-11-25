@@ -19,7 +19,7 @@ const Header = () => {
       </div>
       <div className="mt-2">
         <Link href="/" aria-label="해핑고 홈">
-          <Logo />
+          <Logo className="text-text" />
         </Link>
       </div>
     </header>
