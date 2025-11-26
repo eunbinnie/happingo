@@ -23,7 +23,9 @@ export default function RootLayout({
     >
       <body className="font-pretendard bg-background text-text">
         <ThemeProvider storageKey="happingo-theme">
-          <div className="mx-auto min-h-screen max-w-[600px]">{children}</div>
+          <div className="mx-auto flex min-h-screen max-w-[600px] min-w-xs flex-col py-5">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>

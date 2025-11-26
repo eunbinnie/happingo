@@ -12,7 +12,7 @@ const ThemeChanger = () => {
   return (
     <div
       className={cn(
-        'ml-[2px] flex items-center justify-center',
+        'ml-1 flex items-center justify-center',
         'rounded-full p-[2px] transition-colors duration-300',
         isLight ? 'hover:bg-gray-200' : 'hover:bg-gray-100/50'
       )}
@@ -21,7 +21,7 @@ const ThemeChanger = () => {
         type="button"
         onClick={() => setTheme(isLight ? 'dark' : 'light')}
       >
-        {isLight ? <Sun size={15} /> : <Moon size={15} />}
+        {isLight ? <Sun size={14} /> : <Moon size={14} />}
       </button>
     </div>
   );
