@@ -12,13 +12,14 @@ const Header = () => {
 
   return (
     <header className="px-3">
-      <div className="text-2xs dark:text-text/60 flex items-center justify-between font-light sm:text-xs">
-        <span>{year}</span>
-        <p>
+      <div className="text-2xs dark:text-text/60 flex flex-col font-light sm:text-xs">
+        <span>
+          {year} · {monthLabel}
+        </span>
+        <p className="text-center">
           매달 나만의 행복 미션 빙고 ㅡ{' '}
           <strong className="font-medium">해핑고</strong>
         </p>
-        <span>{monthLabel}</span>
       </div>
       <div className="mt-2">
         <Link href="/" aria-label="해핑고 홈">
