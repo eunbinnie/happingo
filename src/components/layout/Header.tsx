@@ -11,7 +11,7 @@ const Header = () => {
   const monthLabel = String(month).padStart(2, '0'); // 월 01, 02, 03 형식으로 표시
 
   return (
-    <header className="mt-5 px-3">
+    <header className="px-3">
       <div className="text-2xs dark:text-text/60 flex items-center justify-between font-light sm:text-xs">
         <span>{year}</span>
         <p>
