@@ -5,6 +5,7 @@
 
   /* colors */
   --color-background: var(--background);
+  --color-sub-background: var(--sub-background);
   --color-text: var(--text);
 
   /* font-size */
@@ -12,16 +13,8 @@
 
   /* breakpoints */
   --breakpoint-sm: 30rem; /* 480px */
-}
 
-@layer base {
-  :root {
-    --background: #f3f6f9;
-    --text: #1f4e8c;
-  }
-
-  [data-theme='dark'] {
-    --background: #071424;
-    --text: #e5edf7;
-  }
+  /* shadows */
+  --shadow-card: 0 3px 6px rgba(0, 0, 0, 0.06);
+  --shadow-card-dark: 0 3px 8px rgba(0, 0, 0, 0.45);
 }
