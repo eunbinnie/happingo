@@ -17,4 +17,27 @@
   /* shadows */
   --shadow-card: 0 3px 6px rgba(0, 0, 0, 0.06);
   --shadow-card-dark: 0 3px 8px rgba(0, 0, 0, 0.45);
+
+  /* keyframes */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* animation */
+  --animation-fadeIn: fadeIn 0.3s ease-in-out forwards;
+  --animation-fadeOut: fadeOut 0.3s ease-in-out forwards;
 }
