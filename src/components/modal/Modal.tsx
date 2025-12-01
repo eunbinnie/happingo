@@ -1,3 +1,5 @@
+'use client';
+
 import { X } from 'lucide-react';
 import { PropsWithChildren, useEffect, useState } from 'react';
 
@@ -45,15 +47,16 @@ const Modal = ({
         <div className="fill-mode-forwards fixed inset-0 z-9999">
           <div
             className={cn(
-              'bg-black-background size-full',
-              active ? 'animate-fade-in' : 'animate-fade-out'
+              'size-full bg-black/50',
+              active ? 'animate-fadeIn' : 'animate-fadeOut'
             )}
             onClick={onClose}
           />
           <div
             className={cn(
-              'bg-black-secondary absolute top-1/2 left-1/2 w-[calc(100%-48px)] -translate-x-1/2 -translate-y-1/2 rounded-lg px-4 pt-6 pb-8',
-              active ? 'animate-fade-in' : 'animate-fade-out',
+              'bg-background absolute top-1/2 left-1/2 max-w-[calc(100%-48px)] -translate-x-1/2 -translate-y-1/2 rounded-lg p-6',
+              'dark:border-sub-background dark:border',
+              active ? 'animate-fadeIn' : 'animate-fadeOut',
               className
             )}
           >
@@ -63,8 +66,8 @@ const Modal = ({
                   {title}
                 </span>
               )}
-              <button onClick={onClose}>
-                <X />
+              <button onClick={onClose} className="absolute top-4 right-4">
+                <X size={16} />
               </button>
             </div>
             {children}

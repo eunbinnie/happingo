@@ -38,6 +38,6 @@
   }
 
   /* animation */
-  --animation-fadeIn: fadeIn 0.3s ease-in-out forwards;
-  --animation-fadeOut: fadeOut 0.3s ease-in-out forwards;
+  --animate-fadeIn: fadeIn 0.3s ease-in-out forwards;
+  --animate-fadeOut: fadeOut 0.3s ease-in-out forwards;
 }
