@@ -12,9 +12,9 @@ const ThemeChanger = () => {
   return (
     <div
       className={cn(
-        'ml-1 flex items-center justify-center',
-        'rounded-full p-[2px] transition-colors duration-300',
-        isLight ? 'hover:bg-gray-200' : 'hover:bg-gray-100/50'
+        'ml-1.5 flex items-center justify-center',
+        'rounded-full p-1 transition-colors duration-300',
+        'hover:bg-gray-200 dark:hover:bg-gray-100/50'
       )}
     >
       <button
