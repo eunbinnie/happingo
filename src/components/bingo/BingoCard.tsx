@@ -41,7 +41,7 @@ const BingoCard = ({ id, text }: BingoCardProps) => {
       >
         <label
           htmlFor={id}
-          className="border-text/25 flex aspect-square flex-col items-center justify-center gap-1 rounded-md border border-dashed p-1 sm:gap-2"
+          className="border-text/25 flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-md border border-dashed p-1 sm:gap-2"
         >
           <div className="flex size-4 items-center justify-center sm:size-6">
             <ImageUp />
