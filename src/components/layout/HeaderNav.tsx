@@ -1,5 +1,4 @@
 import ThemeChanger from '../button/ThemeChanger';
-import BingoEditModal from '../modal/BingoEditModal';
 
 const Separator = () => {
   return <div className="bg-text/60 h-[10px] w-px" />;
@@ -16,7 +15,7 @@ const HeaderNav = () => {
       <div className="flex items-center gap-1.5">
         <button type="button">해핑고 사용법</button>
         <Separator />
-        <BingoEditModal />
+        <button type="button">빙고 편집</button>
         <div className="flex items-center">
           <Separator />
           <ThemeChanger />
