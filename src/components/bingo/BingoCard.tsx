@@ -23,15 +23,17 @@ const BingoCard = ({ id, text }: BingoCardProps) => {
       className="inline-grid rotate-y-0 cursor-pointer transition-all duration-500 ease-in-out perspective-dramatic transform-3d"
       onClick={handleCardClick}
     >
+      {/* 카드 앞면 */}
       <div
         className={cn(
-          'flex aspect-3/4 items-center justify-center px-2 text-center text-xs font-medium break-keep sm:text-sm',
+          'text-text/60 flex aspect-3/4 items-center justify-center px-1.5 text-center text-xs font-medium break-keep sm:px-3 sm:text-sm',
           'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark border',
           '[grid-area:1/1/1/1] backface-hidden'
         )}
       >
         {text}
       </div>
+      {/* 카드 뒷면 */}
       <div
         className={cn(
           'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark aspect-3/4 border',

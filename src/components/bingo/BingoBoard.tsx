@@ -16,9 +16,9 @@ const array = [
 const BingoBoard = () => {
   return (
     <section className="mt-5 w-full sm:mt-8">
-      <div className="flex items-center justify-between px-2 py-0.5">
+      <div className="mx-2 flex items-center justify-between">
         <p className="text-2xs dark:text-text/60 sm:text-xs">
-          현재 <span className="font-medium">0</span> BINGO
+          현재 <span className="font-semibold">0 BINGO</span>
         </p>
         <Button variant="outline" size="sm">
           빙고 내용 편집
