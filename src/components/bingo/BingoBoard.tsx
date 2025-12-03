@@ -1,5 +1,6 @@
 import Button from '../button/Button';
 import BingoCard from './BingoCard';
+import BingoEditActions from './BingoEditActions';
 
 const array = [
   '하루 30분 산책하기',
@@ -20,15 +21,7 @@ const BingoBoard = () => {
         <p className="text-2xs dark:text-text/60 sm:text-xs">
           현재 <span className="font-semibold">0 BINGO</span>
         </p>
-        <Button variant="outline" size="sm">
-          빙고 내용 편집
-        </Button>
-        {/* <div className="flex items-center gap-1 sm:gap-2">
-          <Button size="sm">저장하기</Button>
-          <Button variant="ghost" size="sm">
-            취소
-          </Button>
-        </div> */}
+        <BingoEditActions />
       </div>
 
       <div className="mt-2 grid grid-cols-3 grid-rows-3 gap-2">
