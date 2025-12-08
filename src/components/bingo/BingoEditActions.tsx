@@ -1,20 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useEditActionStore } from '@/store';
 
 import Button from '../button/Button';
 
 const BingoEditActions = () => {
-  const [isEditing, setIsEditing] = useState(false);
+  const isEditing = useEditActionStore(state => state.isEditing);
+  const startEditing = useEditActionStore(state => state.startEditing);
+  const stopEditing = useEditActionStore(state => state.stopEditing);
 
   // 빙고 내용 편집 버튼 클릭
   const handleEditClick = () => {
-    setIsEditing(prev => !prev);
+    startEditing();
   };
 
   // 저장하기, 취소 공통 함수
   const handleExitEditMode = () => {
-    setIsEditing(prev => !prev);
+    stopEditing();
   };
 
   // 저장하기 버튼 클릭
