@@ -7,7 +7,7 @@ const Separator = () => {
 
 const HeaderNav = () => {
   return (
-    <nav className="dark:text-text/60 mt-4 flex flex-wrap items-center justify-between gap-x-2 text-xs sm:mt-7 sm:text-sm">
+    <nav className="dark:text-text/60 mt-3 flex flex-wrap items-center justify-between gap-x-2 text-xs sm:mt-7 sm:text-sm">
       <div className="flex items-center gap-1.5">
         <Button variant="ghost">지난 빙고</Button>
         <Separator />
