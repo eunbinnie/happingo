@@ -13,7 +13,7 @@ interface ButtonProps
 }
 
 const base =
-  'dark:text-text/60 py-0.5 px-1 transition-colors rounded-md duration-300';
+  'dark:text-text/60 py-0.5 px-1 transition-colors rounded-md duration-300 border border-transparent';
 
 const sizeClasses: Record<ButtonSize, string> = {
   sm: 'text-2xs sm:text-xs',
