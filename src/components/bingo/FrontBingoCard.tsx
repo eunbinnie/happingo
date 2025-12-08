@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import TextareaAutosize from 'react-textarea-autosize';
 
 import { cn } from '@/lib/cn';
+import { useEditActionStore } from '@/store';
 
 interface FrontBingoCardProps {
   text: string;
@@ -10,6 +12,7 @@ interface FrontBingoCardProps {
 
 // 빙고 카드 앞면 컴포넌트
 const FrontBingoCard = ({ text }: FrontBingoCardProps) => {
+  const isEditing = useEditActionStore(state => state.isEditing);
   const [content, setContent] = useState(text);
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -24,11 +27,16 @@ const FrontBingoCard = ({ text }: FrontBingoCardProps) => {
         '[grid-area:1/1/1/1] backface-hidden'
       )}
     >
-      <textarea
+      <TextareaAutosize
+        minRows={1}
+        maxRows={8}
         value={content}
-        onChange={handleContentChange}
         onClick={e => e.stopPropagation()}
-        className="outline-none"
+        onChange={handleContentChange}
+        className={cn(
+          'h-auto resize-none outline-none',
+          !isEditing && 'pointer-events-none'
+        )}
       />
     </div>
   );
