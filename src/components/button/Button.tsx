@@ -13,7 +13,7 @@ interface ButtonProps
 }
 
 const base =
-  'dark:text-text/60 py-0.5 px-1 transition-colors rounded-md duration-300';
+  'dark:text-text/60 py-0.5 px-1 transition-colors rounded-md duration-300 border border-transparent';
 
 const sizeClasses: Record<ButtonSize, string> = {
   sm: 'text-2xs sm:text-xs',
@@ -23,7 +23,7 @@ const sizeClasses: Record<ButtonSize, string> = {
 const variantClasses: Record<ButtonVariant, string> = {
   default: 'bg-text/80 hover:bg-text text-background dark:text-background',
   outline:
-    'hover:bg-sub-background border-text/25 border shadow-xs dark:hover:bg-gray-100/50',
+    'hover:bg-gray-200 border-text/25 border shadow-xs dark:hover:bg-gray-100/50',
   ghost: 'hover:bg-gray-200 dark:hover:bg-gray-100/50',
 };
 
@@ -32,13 +32,15 @@ const Button = ({
   children,
   variant = 'default',
   size = 'md',
+  onClick,
   ...props
 }: ButtonProps) => {
   return (
     <button
       type={type}
-      {...props}
+      onClick={onClick}
       className={cn(base, sizeClasses[size], variantClasses[variant])}
+      {...props}
     >
       {children}
     </button>
