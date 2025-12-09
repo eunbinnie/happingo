@@ -2,15 +2,17 @@
 
 import { useRef } from 'react';
 
+import { BingoItem } from '@/store';
+
 import BackBingoCard from './BackBingoCard';
 import FrontBingoCard from './FrontBingoCard';
 
 interface BingoCardProps {
-  id: string;
-  text: string;
+  item: BingoItem;
 }
 
-const BingoCard = ({ id, text }: BingoCardProps) => {
+const BingoCard = ({ item }: BingoCardProps) => {
+  const { id, text, image } = item;
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleCardClick = () => {

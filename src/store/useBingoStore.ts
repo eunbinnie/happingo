@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 export interface BingoItem {
-  id: number;
+  id: string;
   text: string;
   image: string | null;
 }
@@ -13,7 +13,7 @@ export interface BingoStore {
 
 const initialBingo = (): BingoItem[] =>
   Array.from({ length: 9 }, (_, index) => ({
-    id: index + 1,
+    id: `bingo-card-${index + 1}`,
     text: '',
     image: null,
   }));

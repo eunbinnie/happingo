@@ -19,11 +19,7 @@ const BingoBoard = () => {
 
       <div className="mt-2 grid grid-cols-3 grid-rows-3 gap-2">
         {bingoItems.map((item: BingoItem) => (
-          <BingoCard
-            key={item.id}
-            id={`bingo-card-${item.id}`}
-            text={item.text}
-          />
+          <BingoCard key={item.id} item={item} />
         ))}
       </div>
     </section>
