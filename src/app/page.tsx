@@ -1,7 +1,13 @@
+import BingoBoard from '@/components/bingo/BingoBoard';
+import Header from '@/components/layout/Header';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 text-9xl font-bold">
-      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    </main>
+    <>
+      <Header />
+      <main className="flex flex-col items-center justify-center px-3">
+        <BingoBoard />
+      </main>
+    </>
   );
 }

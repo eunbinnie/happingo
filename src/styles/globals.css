@@ -1,6 +1,31 @@
 @import 'tailwindcss';
+@import './theme.css';
 
-@theme {
-  --font-pretendard: var(--font-pretendard), sans-serif;
-  --font-asset: var(--font-asset), sans-serif;
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@layer base {
+  :root {
+    --background: #f3f6f9;
+    --sub-background: #f8f9fb;
+    --text: #1f4e8c;
+  }
+
+  [data-theme='dark'] {
+    --background: #071424;
+    --sub-background: #0b1a2e;
+    --text: #e5edf7;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+
+  textarea {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  textarea::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 }

@@ -1,0 +1,43 @@
+@theme {
+  /* fonts */
+  --font-pretendard: var(--font-pretendard), sans-serif;
+  --font-asset: var(--font-asset), sans-serif;
+
+  /* colors */
+  --color-background: var(--background);
+  --color-sub-background: var(--sub-background);
+  --color-text: var(--text);
+
+  /* font-size */
+  --text-2xs: 0.5625rem; /* 9px */
+
+  /* breakpoints */
+  --breakpoint-sm: 30rem; /* 480px */
+
+  /* shadows */
+  --shadow-card: 0 3px 6px rgba(0, 0, 0, 0.06);
+  --shadow-card-dark: 0 3px 8px rgba(0, 0, 0, 0.45);
+
+  /* keyframes */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  /* animation */
+  --animate-fadeIn: fadeIn 0.3s ease-in-out forwards;
+  --animate-fadeOut: fadeOut 0.3s ease-in-out forwards;
+}
