@@ -15,15 +15,14 @@ interface FrontBingoCardProps {
 // 빙고 카드 앞면 컴포넌트
 const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
   const { id, text } = item;
+  const isEditing = useEditActionStore(state => state.isEditing);
   const isSaved = useEditActionStore(state => state.isSaved);
+  const isCancelled = useEditActionStore(state => state.isCancelled);
   const updateBingoText = useBingoStore(state => state.updateBingoText);
   const monthKey = getCurrentMonthKey();
   const cardRef = useRef<HTMLTextAreaElement | null>(null);
   const textareaRef = firstBingoCardRef ?? cardRef;
-  const isEditing = useEditActionStore(state => state.isEditing);
   const [content, setContent] = useState(text);
-
-  console.log(text, content);
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -43,6 +42,11 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
   useEffect(() => {
     setContent(text);
   }, [text]);
+
+  useEffect(() => {
+    if (!isCancelled) return;
+    setContent(text);
+  }, [isCancelled, text]);
 
   return (
     <div

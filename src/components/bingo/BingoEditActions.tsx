@@ -13,6 +13,7 @@ const BingoEditActions = ({ onFocusFirstBingo }: BingoEditActionsProps) => {
   const startEditing = useEditActionStore(state => state.startEditing);
   const stopEditing = useEditActionStore(state => state.stopEditing);
   const saveEditing = useEditActionStore(state => state.saveEditing);
+  const cancelEditing = useEditActionStore(state => state.cancelEditing);
 
   // 빙고 내용 편집 버튼 클릭
   const handleEditClick = () => {
@@ -20,20 +21,16 @@ const BingoEditActions = ({ onFocusFirstBingo }: BingoEditActionsProps) => {
     onFocusFirstBingo();
   };
 
-  // 저장하기, 취소 공통 함수
-  const handleExitEditMode = () => {
-    stopEditing();
-  };
-
   // 저장하기 버튼 클릭
   const handleSaveClick = () => {
+    stopEditing();
     saveEditing();
-    handleExitEditMode();
   };
 
   // 취소 버튼 클릭
   const handleCancelClick = () => {
-    handleExitEditMode();
+    stopEditing();
+    cancelEditing();
   };
 
   return (
