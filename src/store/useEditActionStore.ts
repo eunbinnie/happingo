@@ -15,7 +15,8 @@ const initialState = {
 
 export const useEditActionStore = create<EditActionState>()(set => ({
   ...initialState,
-  startEditing: () => set({ ...initialState, isEditing: true, isSaved: false }),
-  stopEditing: () => set({ ...initialState, isEditing: false }),
-  saveEditing: () => set({ ...initialState, isSaved: true }),
+  startEditing: () =>
+    set(state => ({ ...state, isEditing: true, isSaved: false })),
+  stopEditing: () => set(state => ({ ...state, isEditing: false })),
+  saveEditing: () => set(state => ({ ...state, isSaved: true })),
 }));

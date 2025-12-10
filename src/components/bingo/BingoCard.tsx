@@ -14,7 +14,7 @@ interface BingoCardProps {
 }
 
 const BingoCard = ({ item, firstBingoCardRef }: BingoCardProps) => {
-  const { id, text, image } = item;
+  const { id, image } = item;
   const cardRef = useRef<HTMLDivElement | null>(null);
   const isEditing = useEditActionStore(state => state.isEditing);
 
@@ -49,7 +49,7 @@ const BingoCard = ({ item, firstBingoCardRef }: BingoCardProps) => {
       )}
       onClick={handleCardClick}
     >
-      <FrontBingoCard text={text} firstBingoCardRef={firstBingoCardRef} />
+      <FrontBingoCard item={item} firstBingoCardRef={firstBingoCardRef} />
       <BackBingoCard id={id} />
     </div>
   );
