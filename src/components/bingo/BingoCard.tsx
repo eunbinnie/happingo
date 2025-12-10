@@ -10,7 +10,7 @@ import FrontBingoCard from './FrontBingoCard';
 
 interface BingoCardProps {
   item: BingoItem;
-  textareaRef: React.MutableRefObject<HTMLTextAreaElement | null> | null;
+  textareaRef: React.RefObject<HTMLTextAreaElement> | undefined;
 }
 
 const BingoCard = ({ item, textareaRef }: BingoCardProps) => {

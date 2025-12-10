@@ -8,7 +8,7 @@ import BingoCard from './BingoCard';
 import BingoEditActions from './BingoEditActions';
 
 const BingoBoard = () => {
-  const firstBingoCardRef = useRef<HTMLTextAreaElement | null>(null);
+  const firstBingoCardRef = useRef<HTMLTextAreaElement>(null);
   const bingoItems = useBingoStore(state => state.bingo);
 
   const handleFocusFirstBingo = () => {
@@ -29,7 +29,7 @@ const BingoBoard = () => {
           <BingoCard
             key={item.id}
             item={item}
-            textareaRef={index === 0 ? firstBingoCardRef : null}
+            textareaRef={index === 0 ? firstBingoCardRef : undefined}
           />
         ))}
       </div>

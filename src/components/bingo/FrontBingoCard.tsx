@@ -8,7 +8,7 @@ import { useEditActionStore } from '@/store';
 
 interface FrontBingoCardProps {
   text: string;
-  textareaRef: React.MutableRefObject<HTMLTextAreaElement | null> | null;
+  textareaRef: React.RefObject<HTMLTextAreaElement> | undefined;
 }
 
 // 빙고 카드 앞면 컴포넌트
