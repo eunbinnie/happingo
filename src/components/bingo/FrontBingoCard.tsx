@@ -74,7 +74,7 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
         onClick={e => e.stopPropagation()}
         onChange={handleContentChange}
         className={cn(
-          'h-auto resize-none outline-none',
+          'h-auto resize-none text-center outline-none',
           !isEditing && 'pointer-events-none'
         )}
       />
