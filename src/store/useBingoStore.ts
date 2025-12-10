@@ -15,6 +15,7 @@ type BingoByMonth = {
 
 export interface BingoStore {
   bingoByMonth: BingoByMonth;
+  ensureMonthBingo: (monthKey: string) => void; // 월별 빙고 카드 초기화
 }
 
 const initialBingo = (): BingoItem[] =>
@@ -26,10 +27,21 @@ const initialBingo = (): BingoItem[] =>
 
 export const useBingoStore = create<BingoStore>()(
   persist(
-    (set, get) => ({
+    set => ({
       bingoByMonth: {
         [getCurrentMonthKey()]: initialBingo(),
       },
+      ensureMonthBingo: monthKey =>
+        set(state => {
+          if (state.bingoByMonth[monthKey]) return state;
+
+          return {
+            bingoByMonth: {
+              ...state.bingoByMonth,
+              [monthKey]: initialBingo(),
+            },
+          };
+        }),
     }),
     { name: 'happingo-bingo' }
   )

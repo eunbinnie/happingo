@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { BingoItem, useBingoStore } from '@/store';
 import { getCurrentMonthKey } from '@/utils/date';
@@ -9,14 +9,18 @@ import BingoCard from './BingoCard';
 import BingoEditActions from './BingoEditActions';
 
 const BingoBoard = () => {
+  const monthKey = getCurrentMonthKey();
   const firstBingoCardRef = useRef<HTMLTextAreaElement>(null);
-  const bingoItems = useBingoStore(
-    state => state.bingoByMonth[getCurrentMonthKey()]
-  );
+  const ensureMonthBingo = useBingoStore(state => state.ensureMonthBingo);
+  const bingoItems = useBingoStore(state => state.bingoByMonth[monthKey]);
 
   const handleFocusFirstBingo = () => {
     firstBingoCardRef.current?.focus();
   };
+
+  useEffect(() => {
+    ensureMonthBingo(monthKey);
+  }, [monthKey, ensureMonthBingo]);
 
   return (
     <section className="mt-5 w-full sm:mt-8">
