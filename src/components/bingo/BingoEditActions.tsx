@@ -4,7 +4,11 @@ import { useEditActionStore } from '@/store';
 
 import Button from '../button/Button';
 
-const BingoEditActions = () => {
+interface BingoEditActionsProps {
+  onFocusFirstBingo: () => void;
+}
+
+const BingoEditActions = ({ onFocusFirstBingo }: BingoEditActionsProps) => {
   const isEditing = useEditActionStore(state => state.isEditing);
   const startEditing = useEditActionStore(state => state.startEditing);
   const stopEditing = useEditActionStore(state => state.stopEditing);
@@ -12,6 +16,7 @@ const BingoEditActions = () => {
   // 빙고 내용 편집 버튼 클릭
   const handleEditClick = () => {
     startEditing();
+    onFocusFirstBingo();
   };
 
   // 저장하기, 취소 공통 함수
