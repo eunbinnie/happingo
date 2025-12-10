@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import Logo from '@/assets/icons/logo.svg';
-import { TODAY_MONTH_2DIGIT, TODAY_YEAR } from '@/constants/dateConstants';
+import { TODAY_MONTH_2DIGIT, TODAY_YEAR } from '@/utils/date';
 
 import HeaderNav from './HeaderNav';
 

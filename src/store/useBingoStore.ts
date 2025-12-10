@@ -1,14 +1,20 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+import { getCurrentMonthKey } from '@/utils/date';
+
 export interface BingoItem {
   id: string;
   text: string;
   image: string | null;
 }
 
+type BingoByMonth = {
+  [monthKey: string]: BingoItem[];
+};
+
 export interface BingoStore {
-  bingo: BingoItem[];
+  bingoByMonth: BingoByMonth;
 }
 
 const initialBingo = (): BingoItem[] =>
@@ -20,8 +26,10 @@ const initialBingo = (): BingoItem[] =>
 
 export const useBingoStore = create<BingoStore>()(
   persist(
-    set => ({
-      bingo: initialBingo(),
+    (set, get) => ({
+      bingoByMonth: {
+        [getCurrentMonthKey()]: initialBingo(),
+      },
     }),
     { name: 'happingo-bingo' }
   )

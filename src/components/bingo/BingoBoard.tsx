@@ -3,13 +3,16 @@
 import { useRef } from 'react';
 
 import { BingoItem, useBingoStore } from '@/store';
+import { getCurrentMonthKey } from '@/utils/date';
 
 import BingoCard from './BingoCard';
 import BingoEditActions from './BingoEditActions';
 
 const BingoBoard = () => {
   const firstBingoCardRef = useRef<HTMLTextAreaElement>(null);
-  const bingoItems = useBingoStore(state => state.bingo);
+  const bingoItems = useBingoStore(
+    state => state.bingoByMonth[getCurrentMonthKey()]
+  );
 
   const handleFocusFirstBingo = () => {
     firstBingoCardRef.current?.focus();
