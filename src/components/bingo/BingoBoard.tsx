@@ -29,7 +29,7 @@ const BingoBoard = () => {
           <BingoCard
             key={item.id}
             item={item}
-            textareaRef={index === 0 ? firstBingoCardRef : undefined}
+            firstBingoCardRef={index === 0 ? firstBingoCardRef : undefined}
           />
         ))}
       </div>

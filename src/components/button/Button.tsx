@@ -6,8 +6,7 @@ type ButtonVariant = 'default' | 'outline' | 'ghost';
 type ButtonSize = 'sm' | 'md';
 
 interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    PropsWithChildren {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren {
   variant?: ButtonVariant;
   size?: ButtonSize;
 }
