@@ -1,12 +1,19 @@
 'use client';
 
+import { useRef } from 'react';
+
 import { BingoItem, useBingoStore } from '@/store';
 
 import BingoCard from './BingoCard';
 import BingoEditActions from './BingoEditActions';
 
 const BingoBoard = () => {
+  const firstBingoCardRef = useRef<HTMLTextAreaElement | null>(null);
   const bingoItems = useBingoStore(state => state.bingo);
+
+  const handleFocusFirstBingo = () => {
+    firstBingoCardRef.current?.focus();
+  };
 
   return (
     <section className="mt-5 w-full sm:mt-8">
@@ -14,12 +21,16 @@ const BingoBoard = () => {
         <p className="text-2xs dark:text-text/60 sm:text-xs">
           현재 <span className="font-semibold">0 BINGO</span>
         </p>
-        <BingoEditActions />
+        <BingoEditActions onFocusFirstBingo={handleFocusFirstBingo} />
       </div>
 
       <div className="mt-2 grid grid-cols-3 grid-rows-3 gap-2">
-        {bingoItems.map((item: BingoItem) => (
-          <BingoCard key={item.id} item={item} />
+        {bingoItems.map((item: BingoItem, index) => (
+          <BingoCard
+            key={item.id}
+            item={item}
+            textareaRef={index === 0 ? firstBingoCardRef : null}
+          />
         ))}
       </div>
     </section>

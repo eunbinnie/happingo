@@ -8,11 +8,12 @@ import { useEditActionStore } from '@/store';
 
 interface FrontBingoCardProps {
   text: string;
+  textareaRef: React.MutableRefObject<HTMLTextAreaElement | null> | null;
 }
 
 // 빙고 카드 앞면 컴포넌트
-const FrontBingoCard = ({ text }: FrontBingoCardProps) => {
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+const FrontBingoCard = ({ text, textareaRef }: FrontBingoCardProps) => {
+  const cardRef = useRef<HTMLTextAreaElement | null>(null);
   const isEditing = useEditActionStore(state => state.isEditing);
   const [content, setContent] = useState(text);
 
@@ -23,7 +24,8 @@ const FrontBingoCard = ({ text }: FrontBingoCardProps) => {
   // 편집 모드에서 카드 클릭 시 textarea 포커스
   const handleCardClick: React.MouseEventHandler<HTMLDivElement> = () => {
     if (!isEditing) return;
-    textareaRef.current?.focus();
+    textareaRef?.current?.focus();
+    cardRef.current?.focus();
   };
 
   return (
@@ -37,7 +39,7 @@ const FrontBingoCard = ({ text }: FrontBingoCardProps) => {
       )}
     >
       <TextareaAutosize
-        ref={textareaRef}
+        ref={textareaRef || cardRef}
         minRows={1}
         maxRows={8}
         value={content}

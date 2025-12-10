@@ -10,11 +10,12 @@ import FrontBingoCard from './FrontBingoCard';
 
 interface BingoCardProps {
   item: BingoItem;
+  textareaRef: React.MutableRefObject<HTMLTextAreaElement | null> | null;
 }
 
-const BingoCard = ({ item }: BingoCardProps) => {
+const BingoCard = ({ item, textareaRef }: BingoCardProps) => {
   const { id, text, image } = item;
-  const cardRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
   const isEditing = useEditActionStore(state => state.isEditing);
 
   const handleCardClick = () => {
@@ -48,7 +49,7 @@ const BingoCard = ({ item }: BingoCardProps) => {
       )}
       onClick={handleCardClick}
     >
-      <FrontBingoCard text={text} />
+      <FrontBingoCard text={text} textareaRef={textareaRef} />
       <BackBingoCard id={id} />
     </div>
   );
