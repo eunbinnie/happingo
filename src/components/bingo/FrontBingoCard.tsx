@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useShallow } from 'zustand/react/shallow';
 
+import useMounted from '@/hooks/useMounted';
 import { cn } from '@/lib/cn';
 import { BingoItem, useBingoStore, useEditActionStore } from '@/store';
 import { getCurrentMonthKey } from '@/utils/date';
@@ -16,6 +17,7 @@ interface FrontBingoCardProps {
 // 빙고 카드 앞면 컴포넌트
 const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
   const { id, text } = item;
+  const mounted = useMounted();
   const { isEditing, result, resetResult } = useEditActionStore(
     useShallow(state => ({
       isEditing: state.isEditing,
@@ -61,9 +63,11 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
       onClick={handleCardClick}
       className={cn(
         'text-text/60 flex aspect-3/4 items-center justify-center px-1.5 text-center text-xs font-medium break-keep sm:px-3 sm:text-sm',
-        'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark border',
         '[grid-area:1/1/1/1] backface-hidden',
-        'focus-within:outline'
+        'focus-within:outline',
+        mounted
+          ? 'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark border'
+          : 'bg-skeleton animate-pulse'
       )}
     >
       <TextareaAutosize
@@ -74,7 +78,7 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
         onClick={e => e.stopPropagation()}
         onChange={handleContentChange}
         className={cn(
-          'h-auto resize-none outline-none',
+          'h-auto resize-none text-center outline-none',
           !isEditing && 'pointer-events-none'
         )}
       />

@@ -3,10 +3,20 @@
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
+import useMounted from '@/hooks/useMounted';
 import { cn } from '@/lib/cn';
 
 const ThemeChanger = () => {
   const { theme, setTheme } = useTheme();
+  const mounted = useMounted();
+
+  // 마운트되기 전에는 스켈레톤 UI 렌더링 (hydration 에러 방지)
+  if (!mounted) {
+    return (
+      <div className="bg-skeleton ml-1.5 size-[22px] animate-pulse rounded-full" />
+    );
+  }
+
   const isLight = theme !== 'dark';
 
   return (

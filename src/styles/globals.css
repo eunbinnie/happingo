@@ -8,12 +8,14 @@
     --background: #f3f6f9;
     --sub-background: #f8f9fb;
     --text: #1f4e8c;
+    --skeleton: #e0e6f2;
   }
 
   [data-theme='dark'] {
     --background: #071424;
     --sub-background: #0b1a2e;
     --text: #e5edf7;
+    --skeleton: #13253f;
   }
 
   button:not(:disabled),
