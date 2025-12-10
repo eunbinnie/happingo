@@ -23,7 +23,12 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
       resetResult: state.resetResult,
     }))
   );
-  const updateBingoText = useBingoStore(state => state.updateBingoText);
+  const { hasHydrated, updateBingoText } = useBingoStore(
+    useShallow(state => ({
+      hasHydrated: state.hasHydrated,
+      updateBingoText: state.updateBingoText,
+    }))
+  );
   const monthKey = getCurrentMonthKey();
   const cardRef = useRef<HTMLTextAreaElement | null>(null);
   const textareaRef = firstBingoCardRef ?? cardRef;
@@ -61,9 +66,11 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
       onClick={handleCardClick}
       className={cn(
         'text-text/60 flex aspect-3/4 items-center justify-center px-1.5 text-center text-xs font-medium break-keep sm:px-3 sm:text-sm',
-        'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark border',
         '[grid-area:1/1/1/1] backface-hidden',
-        'focus-within:outline'
+        'focus-within:outline',
+        hasHydrated
+          ? 'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark border'
+          : 'bg-skeleton animate-pulse'
       )}
     >
       <TextareaAutosize

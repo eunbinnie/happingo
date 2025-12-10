@@ -7,6 +7,7 @@
   --color-background: var(--background);
   --color-sub-background: var(--sub-background);
   --color-text: var(--text);
+  --color-skeleton: var(--skeleton);
 
   /* font-size */
   --text-2xs: 0.5625rem; /* 9px */

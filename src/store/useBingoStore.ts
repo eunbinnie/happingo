@@ -18,6 +18,8 @@ export interface BingoStore {
   ensureMonthBingo: (monthKey: string) => void; // 월별 빙고 카드 초기화
   updateBingoText: (monthKey: string, id: string, text: string) => void; // 빙고 텍스트 업데이트
   updateBingoImage: (monthKey: string, id: string, image: string) => void; // 빙고 이미지 업데이트
+  hasHydrated: boolean;
+  setHasHydrated: (hasHydrated: boolean) => void;
 }
 
 const initialBingo = (): BingoItem[] =>
@@ -33,6 +35,8 @@ export const useBingoStore = create<BingoStore>()(
       bingoByMonth: {
         [getCurrentMonthKey()]: initialBingo(),
       },
+      hasHydrated: false,
+      setHasHydrated: (hasHydrated: boolean) => set({ hasHydrated }),
       ensureMonthBingo: monthKey =>
         set(state => {
           if (state.bingoByMonth[monthKey]) return state;
@@ -71,6 +75,11 @@ export const useBingoStore = create<BingoStore>()(
           };
         }),
     }),
-    { name: 'happingo-bingo' }
+    {
+      name: 'happingo-bingo',
+      onRehydrateStorage: () => state => {
+        state?.setHasHydrated(true);
+      },
+    }
   )
 );
