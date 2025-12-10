@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
-import { BingoItem, useBingoStore } from '@/store';
+import { useBingoStore } from '@/store';
 import { getCurrentMonthKey } from '@/utils/date';
 
 import BingoCard from './BingoCard';
@@ -11,8 +12,12 @@ import BingoEditActions from './BingoEditActions';
 const BingoBoard = () => {
   const monthKey = getCurrentMonthKey();
   const firstBingoCardRef = useRef<HTMLTextAreaElement>(null);
-  const ensureMonthBingo = useBingoStore(state => state.ensureMonthBingo);
-  const bingoItems = useBingoStore(state => state.bingoByMonth[monthKey]);
+  const { ensureMonthBingo, bingoItems } = useBingoStore(
+    useShallow(state => ({
+      ensureMonthBingo: state.ensureMonthBingo,
+      bingoItems: state.bingoByMonth[monthKey] ?? [],
+    }))
+  );
 
   const handleFocusFirstBingo = () => {
     firstBingoCardRef.current?.focus();
@@ -28,11 +33,11 @@ const BingoBoard = () => {
         <p className="text-2xs dark:text-text/60 sm:text-xs">
           현재 <span className="font-semibold">0 BINGO</span>
         </p>
-        <BingoEditActions onFocusFirstBingo={handleFocusFirstBingo} />
+        <BingoEditActions onFocusFirstBingoCard={handleFocusFirstBingo} />
       </div>
 
       <div className="mt-2 grid grid-cols-3 grid-rows-3 gap-2">
-        {bingoItems.map((item: BingoItem, index) => (
+        {bingoItems.map((item, index) => (
           <BingoCard
             key={item.id}
             item={item}

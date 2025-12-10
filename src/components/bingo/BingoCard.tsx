@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { cn } from '@/lib/cn';
 import { BingoItem, useEditActionStore } from '@/store';
@@ -15,28 +15,21 @@ interface BingoCardProps {
 
 const BingoCard = ({ item, firstBingoCardRef }: BingoCardProps) => {
   const { id, image } = item;
+  // TODO: cardRef 필요 여부 체크
   const cardRef = useRef<HTMLDivElement | null>(null);
+  const [isBack, setIsBack] = useState(false);
   const isEditing = useEditActionStore(state => state.isEditing);
 
   const handleCardClick = () => {
-    // 편집 모드이면 클릭 이벤트 무시
     if (isEditing) return;
-
-    cardRef.current?.classList.toggle('rotate-y-180');
+    setIsBack(prev => !prev);
   };
 
   useEffect(() => {
-    // 현재 카드 뒷면을 보여주고 있는지
-    const isBackFace = cardRef.current?.classList.contains('rotate-y-180');
-
-    // 편집 모드이고 카드 뒷면을 보여주고 있으면 앞면으로 전환
-    if (isEditing && isBackFace) {
-      cardRef.current?.classList.remove('rotate-y-180');
-    }
-
-    // 편집 모드가 아니고 이미지가 있으면 뒷면으로 전환
-    if (!isEditing && image) {
-      cardRef.current?.classList.add('rotate-y-180');
+    if (isEditing || !image) {
+      setIsBack(false);
+    } else if (!isEditing && image) {
+      setIsBack(true);
     }
   }, [isEditing, image]);
 
@@ -45,6 +38,7 @@ const BingoCard = ({ item, firstBingoCardRef }: BingoCardProps) => {
       ref={cardRef}
       className={cn(
         'inline-grid rotate-y-0 transition-all duration-500 ease-in-out perspective-dramatic transform-3d',
+        isBack && 'rotate-y-180',
         !isEditing && 'cursor-pointer'
       )}
       onClick={handleCardClick}

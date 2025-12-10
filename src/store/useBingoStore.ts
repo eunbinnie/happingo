@@ -44,14 +44,18 @@ export const useBingoStore = create<BingoStore>()(
           };
         }),
       updateBingoText: (monthKey: string, id: string, text: string) =>
-        set(state => ({
-          bingoByMonth: {
-            ...state.bingoByMonth,
-            [monthKey]: state.bingoByMonth[monthKey].map(item =>
-              item.id === id ? { ...item, text } : item
-            ),
-          },
-        })),
+        set(state => {
+          const monthItems = state.bingoByMonth[monthKey] ?? initialBingo();
+
+          return {
+            bingoByMonth: {
+              ...state.bingoByMonth,
+              [monthKey]: monthItems.map(item =>
+                item.id === id ? { ...item, text } : item
+              ),
+            },
+          };
+        }),
     }),
     { name: 'happingo-bingo' }
   )
