@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useShallow } from 'zustand/react/shallow';
 
+import useMounted from '@/hooks/useMounted';
 import { cn } from '@/lib/cn';
 import { BingoItem, useBingoStore, useEditActionStore } from '@/store';
 import { getCurrentMonthKey } from '@/utils/date';
@@ -16,6 +17,7 @@ interface FrontBingoCardProps {
 // 빙고 카드 앞면 컴포넌트
 const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
   const { id, text } = item;
+  const mounted = useMounted();
   const { isEditing, result, resetResult } = useEditActionStore(
     useShallow(state => ({
       isEditing: state.isEditing,
@@ -23,12 +25,7 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
       resetResult: state.resetResult,
     }))
   );
-  const { hasHydrated, updateBingoText } = useBingoStore(
-    useShallow(state => ({
-      hasHydrated: state.hasHydrated,
-      updateBingoText: state.updateBingoText,
-    }))
-  );
+  const updateBingoText = useBingoStore(state => state.updateBingoText);
   const monthKey = getCurrentMonthKey();
   const cardRef = useRef<HTMLTextAreaElement | null>(null);
   const textareaRef = firstBingoCardRef ?? cardRef;
@@ -68,7 +65,7 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
         'text-text/60 flex aspect-3/4 items-center justify-center px-1.5 text-center text-xs font-medium break-keep sm:px-3 sm:text-sm',
         '[grid-area:1/1/1/1] backface-hidden',
         'focus-within:outline',
-        hasHydrated
+        mounted
           ? 'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark border'
           : 'bg-skeleton animate-pulse'
       )}
