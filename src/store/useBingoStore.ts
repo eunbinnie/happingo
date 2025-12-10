@@ -17,6 +17,7 @@ export interface BingoStore {
   bingoByMonth: BingoByMonth;
   ensureMonthBingo: (monthKey: string) => void; // 월별 빙고 카드 초기화
   updateBingoText: (monthKey: string, id: string, text: string) => void; // 빙고 텍스트 업데이트
+  updateBingoImage: (monthKey: string, id: string, image: string) => void; // 빙고 이미지 업데이트
 }
 
 const initialBingo = (): BingoItem[] =>
@@ -52,6 +53,19 @@ export const useBingoStore = create<BingoStore>()(
               ...state.bingoByMonth,
               [monthKey]: monthItems.map(item =>
                 item.id === id ? { ...item, text } : item
+              ),
+            },
+          };
+        }),
+      updateBingoImage: (monthKey: string, id: string, image: string) =>
+        set(state => {
+          const monthItems = state.bingoByMonth[monthKey] ?? initialBingo();
+
+          return {
+            bingoByMonth: {
+              ...state.bingoByMonth,
+              [monthKey]: monthItems.map(item =>
+                item.id === id ? { ...item, image } : item
               ),
             },
           };

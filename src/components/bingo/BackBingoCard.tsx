@@ -2,16 +2,22 @@
 
 import { ImageUp } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
 
 import { cn } from '@/lib/cn';
+import { useBingoStore } from '@/store';
+import { getCurrentMonthKey } from '@/utils/date';
 
 interface BackBingoCardProps {
   id: string;
 }
 // 빙고 카드 뒷면 컴포넌트
 const BackBingoCard = ({ id }: BackBingoCardProps) => {
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const monthKey = getCurrentMonthKey();
+  const updateBingoImage = useBingoStore(state => state.updateBingoImage);
+
+  const bingoItems = useBingoStore(state => state.bingoByMonth[monthKey]);
+  const item = bingoItems.find(item => item.id === id);
+  const previewUrl = item?.image ?? null;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -20,7 +26,7 @@ const BackBingoCard = ({ id }: BackBingoCardProps) => {
     const reader = new FileReader();
     reader.onloadend = () => {
       const dataUrl = reader.result as string;
-      setPreviewUrl(dataUrl);
+      updateBingoImage(monthKey, id, dataUrl);
     };
     reader.readAsDataURL(file);
   };
