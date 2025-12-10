@@ -1,17 +1,22 @@
 import { create } from 'zustand';
 
-export interface EditActionState {
-  isEditing: boolean;
+type EditResult = 'idle' | 'saved' | 'cancelled';
+
+interface EditActionState {
+  isEditing: boolean; // 편집 모드 여부
+  result: EditResult; // 편집 결과 여부
   startEditing: () => void;
-  stopEditing: () => void;
+  finishEditing: (result: Exclude<EditResult, 'idle'>) => void;
+  resetResult: () => void;
 }
 
-const initialState = {
+export const useEditActionStore = create<EditActionState>(set => ({
   isEditing: false,
-};
+  result: 'idle',
 
-export const useEditActionStore = create<EditActionState>()(set => ({
-  ...initialState,
-  startEditing: () => set({ ...initialState, isEditing: true }),
-  stopEditing: () => set({ ...initialState, isEditing: false }),
+  startEditing: () => set({ isEditing: true, result: 'idle' }),
+
+  finishEditing: result => set({ isEditing: false, result }),
+
+  resetResult: () => set({ result: 'idle' }),
 }));

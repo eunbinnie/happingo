@@ -1,21 +1,32 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
+import { useShallow } from 'zustand/react/shallow';
 
 import { cn } from '@/lib/cn';
-import { useEditActionStore } from '@/store';
+import { BingoItem, useBingoStore, useEditActionStore } from '@/store';
+import { getCurrentMonthKey } from '@/utils/date';
 
 interface FrontBingoCardProps {
-  text: string;
+  item: BingoItem;
   firstBingoCardRef: React.RefObject<HTMLTextAreaElement> | undefined;
 }
 
 // 빙고 카드 앞면 컴포넌트
-const FrontBingoCard = ({ text, firstBingoCardRef }: FrontBingoCardProps) => {
+const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
+  const { id, text } = item;
+  const { isEditing, result, resetResult } = useEditActionStore(
+    useShallow(state => ({
+      isEditing: state.isEditing,
+      result: state.result,
+      resetResult: state.resetResult,
+    }))
+  );
+  const updateBingoText = useBingoStore(state => state.updateBingoText);
+  const monthKey = getCurrentMonthKey();
   const cardRef = useRef<HTMLTextAreaElement | null>(null);
   const textareaRef = firstBingoCardRef ?? cardRef;
-  const isEditing = useEditActionStore(state => state.isEditing);
   const [content, setContent] = useState(text);
 
   const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -27,6 +38,23 @@ const FrontBingoCard = ({ text, firstBingoCardRef }: FrontBingoCardProps) => {
     if (!isEditing) return;
     textareaRef.current?.focus();
   };
+
+  useEffect(() => {
+    setContent(text);
+  }, [text]);
+
+  useEffect(() => {
+    if (result === 'saved') {
+      updateBingoText(monthKey, id, content);
+      resetResult();
+      return;
+    }
+
+    if (result === 'cancelled') {
+      setContent(text);
+      resetResult();
+    }
+  }, [result, monthKey, id, content, text, updateBingoText, resetResult]);
 
   return (
     <div
