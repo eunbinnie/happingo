@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import { cn } from '@/lib/cn';
@@ -13,6 +13,7 @@ interface FrontBingoCardProps {
 
 // 빙고 카드 앞면 컴포넌트
 const FrontBingoCard = ({ text, firstBingoCardRef }: FrontBingoCardProps) => {
+  const isSaved = useEditActionStore(state => state.isSaved);
   const cardRef = useRef<HTMLTextAreaElement | null>(null);
   const textareaRef = firstBingoCardRef ?? cardRef;
   const isEditing = useEditActionStore(state => state.isEditing);
@@ -27,6 +28,11 @@ const FrontBingoCard = ({ text, firstBingoCardRef }: FrontBingoCardProps) => {
     if (!isEditing) return;
     textareaRef.current?.focus();
   };
+
+  useEffect(() => {
+    if (isSaved) {
+    }
+  }, [isSaved]);
 
   return (
     <div

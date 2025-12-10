@@ -12,6 +12,7 @@ const BingoEditActions = ({ onFocusFirstBingo }: BingoEditActionsProps) => {
   const isEditing = useEditActionStore(state => state.isEditing);
   const startEditing = useEditActionStore(state => state.startEditing);
   const stopEditing = useEditActionStore(state => state.stopEditing);
+  const saveEditing = useEditActionStore(state => state.saveEditing);
 
   // 빙고 내용 편집 버튼 클릭
   const handleEditClick = () => {
@@ -26,6 +27,7 @@ const BingoEditActions = ({ onFocusFirstBingo }: BingoEditActionsProps) => {
 
   // 저장하기 버튼 클릭
   const handleSaveClick = () => {
+    saveEditing();
     handleExitEditMode();
   };
 
