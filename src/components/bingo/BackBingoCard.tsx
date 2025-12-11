@@ -26,12 +26,13 @@ const BackBingoCard = ({ id }: BackBingoCardProps) => {
         previewUrl ? 'relative' : 'border'
       )}
     >
-      <ImageFileInput mode="create" id={id} />
+      <ImageFileInput mode="create" id={id} item={item} />
       {previewUrl && (
         <div className="absolute inset-0">
           <Image src={previewUrl} alt="preview" fill className="object-cover" />
         </div>
       )}
+      <ImageFileInput mode="edit" id={id} item={item} />
     </div>
   );
 };
