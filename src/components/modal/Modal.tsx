@@ -1,8 +1,9 @@
 'use client';
 
 import { X } from 'lucide-react';
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { PropsWithChildren } from 'react';
 
+import useModalFadeAnimation from '@/hooks/useModalFadeAnimation';
 import { cn } from '@/lib/cn';
 
 import Portal from './Portal';
@@ -21,25 +22,7 @@ const Modal = ({
   title,
   className,
 }: IModalProps) => {
-  const [visible, setVisible] = useState<boolean>(active);
-
-  useEffect(() => {
-    let timer: NodeJS.Timeout | null;
-
-    if (active) {
-      setVisible(true);
-    } else {
-      timer = setTimeout(() => {
-        setVisible(false);
-      }, 300);
-    }
-
-    return () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-    };
-  }, [active]);
+  const { visible } = useModalFadeAnimation(active);
 
   return (
     visible && (
