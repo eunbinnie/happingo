@@ -5,17 +5,17 @@ import Image from 'next/image';
 
 import { cn } from '@/lib/cn';
 import { useBingoStore } from '@/store';
-import { getCurrentMonthKey } from '@/utils/date';
+import { MONTH_KEY } from '@/utils/date';
 
 interface BackBingoCardProps {
   id: string;
 }
 // 빙고 카드 뒷면 컴포넌트
 const BackBingoCard = ({ id }: BackBingoCardProps) => {
-  const monthKey = getCurrentMonthKey();
   const updateBingoImage = useBingoStore(state => state.updateBingoImage);
 
   const bingoItems = useBingoStore(state => state.bingoByMonth[monthKey]);
+  const bingoItems = useBingoStore(state => state.bingoByMonth[MONTH_KEY]);
   const item = bingoItems.find(item => item.id === id);
   const previewUrl = item?.image ?? null;
 

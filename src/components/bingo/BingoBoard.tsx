@@ -4,18 +4,17 @@ import { useEffect, useRef } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useBingoStore } from '@/store';
-import { getCurrentMonthKey } from '@/utils/date';
+import { MONTH_KEY } from '@/utils/date';
 
 import BingoCard from './BingoCard';
 import BingoEditActions from './BingoEditActions';
 
 const BingoBoard = () => {
-  const monthKey = getCurrentMonthKey();
   const firstBingoCardRef = useRef<HTMLTextAreaElement>(null);
   const { ensureMonthBingo, bingoItems } = useBingoStore(
     useShallow(state => ({
       ensureMonthBingo: state.ensureMonthBingo,
-      bingoItems: state.bingoByMonth[monthKey] ?? [],
+      bingoItems: state.bingoByMonth[MONTH_KEY] ?? [],
     }))
   );
 
@@ -24,8 +23,8 @@ const BingoBoard = () => {
   };
 
   useEffect(() => {
-    ensureMonthBingo(monthKey);
-  }, [monthKey, ensureMonthBingo]);
+    ensureMonthBingo(MONTH_KEY);
+  }, [ensureMonthBingo]);
 
   return (
     <section className="mt-5 w-full sm:mt-8">
