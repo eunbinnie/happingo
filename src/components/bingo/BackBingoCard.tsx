@@ -6,7 +6,8 @@ import { cn } from '@/lib/cn';
 import { useBingoStore } from '@/store';
 import { MONTH_KEY } from '@/utils/date';
 
-import ImageFileInput from '../input/ImageFileInput';
+import BingoImageCreateCard from './image/BingoImageCreateCard';
+import BingoImageEditMenu from './image/BingoImageEditMenu';
 
 interface BackBingoCardProps {
   id: string;
@@ -26,13 +27,13 @@ const BackBingoCard = ({ id }: BackBingoCardProps) => {
         previewUrl ? 'relative' : 'border'
       )}
     >
-      <ImageFileInput mode="create" id={id} item={item} />
+      <BingoImageCreateCard id={id} />
       {previewUrl && (
         <div className="absolute inset-0">
           <Image src={previewUrl} alt="preview" fill className="object-cover" />
         </div>
       )}
-      <ImageFileInput mode="edit" id={id} item={item} />
+      {item && item.image && <BingoImageEditMenu />}
     </div>
   );
 };
