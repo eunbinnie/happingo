@@ -7,7 +7,7 @@ import { useShallow } from 'zustand/react/shallow';
 import useMounted from '@/hooks/useMounted';
 import { cn } from '@/lib/cn';
 import { BingoItem, useBingoStore, useEditActionStore } from '@/store';
-import { getCurrentMonthKey } from '@/utils/date';
+import { MONTH_KEY } from '@/utils/date';
 
 interface FrontBingoCardProps {
   item: BingoItem;
@@ -26,7 +26,6 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
     }))
   );
   const updateBingoText = useBingoStore(state => state.updateBingoText);
-  const monthKey = getCurrentMonthKey();
   const cardRef = useRef<HTMLTextAreaElement | null>(null);
   const textareaRef = firstBingoCardRef ?? cardRef;
   const [content, setContent] = useState(text);
@@ -47,7 +46,7 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
 
   useEffect(() => {
     if (result === 'saved') {
-      updateBingoText(monthKey, id, content);
+      updateBingoText(MONTH_KEY, id, content);
       resetResult();
       return;
     }
@@ -56,7 +55,7 @@ const FrontBingoCard = ({ item, firstBingoCardRef }: FrontBingoCardProps) => {
       setContent(text);
       resetResult();
     }
-  }, [result, monthKey, id, content, text, updateBingoText, resetResult]);
+  }, [result, id, content, text, updateBingoText, resetResult]);
 
   return (
     <div

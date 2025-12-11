@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { getCurrentMonthKey } from '@/utils/date';
+import { MONTH_KEY } from '@/utils/date';
 
 export interface BingoItem {
   id: string;
@@ -31,7 +31,7 @@ export const useBingoStore = create<BingoStore>()(
   persist(
     set => ({
       bingoByMonth: {
-        [getCurrentMonthKey()]: initialBingo(),
+        [MONTH_KEY]: initialBingo(),
       },
       ensureMonthBingo: monthKey =>
         set(state => {
