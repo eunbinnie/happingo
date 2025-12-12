@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 
+import { ImodalState } from '@/hooks/useModalState';
 import { cn } from '@/lib/cn';
 import { useBingoStore } from '@/store';
 import { MONTH_KEY } from '@/utils/date';
@@ -11,15 +12,24 @@ import BingoImageEditMenu from './image/BingoImageEditMenu';
 
 interface BackBingoCardProps {
   id: string;
+  modalState: ImodalState;
 }
 // 빙고 카드 뒷면 컴포넌트
-const BackBingoCard = ({ id }: BackBingoCardProps) => {
+const BackBingoCard = ({ id, modalState }: BackBingoCardProps) => {
   const bingoItems = useBingoStore(state => state.bingoByMonth[MONTH_KEY]);
   const item = bingoItems.find(item => item.id === id);
   const previewUrl = item?.image ?? null;
+  const { active, handleModalOpen, handleModalClose } = modalState;
+
+  const handleCardClick: React.MouseEventHandler<HTMLDivElement> = e => {
+    if (active) {
+      e.stopPropagation();
+    }
+  };
 
   return (
     <div
+      onClick={handleCardClick}
       className={cn(
         'border-text/25 bg-sub-background shadow-card dark:shadow-card-dark aspect-3/4',
         'rotate-y-180 [grid-area:1/1/1/1] backface-hidden',
@@ -33,7 +43,13 @@ const BackBingoCard = ({ id }: BackBingoCardProps) => {
           <Image src={previewUrl} alt="preview" fill className="object-cover" />
         </div>
       )}
-      {item && item.image && <BingoImageEditMenu />}
+      {item && item.image && (
+        <BingoImageEditMenu
+          active={active}
+          handleModalOpen={handleModalOpen}
+          handleModalClose={handleModalClose}
+        />
+      )}
     </div>
   );
 };

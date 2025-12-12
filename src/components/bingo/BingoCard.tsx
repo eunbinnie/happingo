@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import useModalState from '@/hooks/useModalState';
 import { cn } from '@/lib/cn';
 import { BingoItem, useEditActionStore } from '@/store';
 
@@ -16,10 +17,11 @@ interface BingoCardProps {
 const BingoCard = ({ item, firstBingoCardRef }: BingoCardProps) => {
   const { id, image } = item;
   const [isBack, setIsBack] = useState(false);
+  const modalState = useModalState();
   const isEditing = useEditActionStore(state => state.isEditing);
 
   const handleCardClick = () => {
-    if (isEditing) return;
+    if (isEditing || modalState.active) return;
     setIsBack(prev => !prev);
   };
 
@@ -41,7 +43,7 @@ const BingoCard = ({ item, firstBingoCardRef }: BingoCardProps) => {
       onClick={handleCardClick}
     >
       <FrontBingoCard item={item} firstBingoCardRef={firstBingoCardRef} />
-      <BackBingoCard id={id} />
+      <BackBingoCard id={id} modalState={modalState} />
     </div>
   );
 };

@@ -1,12 +1,14 @@
 import { EllipsisVertical } from 'lucide-react';
 
-import useModalState from '@/hooks/useModalState';
+import { ImodalState } from '@/hooks/useModalState';
 
 import ImageCardMenu from './ImageCardMenu';
 
-const BingoImageEditMenu = () => {
-  const { active, handleModalClose, handleModalOpen } = useModalState();
-
+const BingoImageEditMenu = ({
+  active,
+  handleModalClose,
+  handleModalOpen,
+}: ImodalState) => {
   const handleClick: React.MouseEventHandler<HTMLDivElement> = e => {
     e.stopPropagation();
     handleModalOpen();
