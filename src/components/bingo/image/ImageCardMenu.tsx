@@ -1,6 +1,9 @@
 'use client';
 
+import { useRef } from 'react';
+
 import useModalFadeAnimation from '@/hooks/useModalFadeAnimation';
+import useOutsideClick from '@/hooks/useOutsideClick';
 import { cn } from '@/lib/cn';
 
 interface ImageCardMenuProps {
@@ -9,11 +12,16 @@ interface ImageCardMenuProps {
 }
 
 const ImageCardMenu = ({ active, onClose }: ImageCardMenuProps) => {
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const { visible } = useModalFadeAnimation(active);
+  useOutsideClick(menuRef, () => {
+    onClose();
+  });
 
   return (
     visible && (
       <div
+        ref={menuRef}
         onClick={e => {
           e.stopPropagation();
         }}
