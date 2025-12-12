@@ -19,7 +19,7 @@ const ImageCardMenu = ({ active, onClose }: ImageCardMenuProps) => {
         }}
         className={cn(
           'bg-sub-background border-text/25 absolute right-1 z-50 max-h-80 w-40 overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md',
-          active ? 'animate-fadeIn' : 'animate-fadeOut'
+          active ? 'animate-fadeZoomIn' : 'animate-fadeZoomOut'
         )}
       >
         <div className="cursor-default rounded-sm px-2 py-1.5 text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-100/50">

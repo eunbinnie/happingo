@@ -42,7 +42,31 @@
     }
   }
 
+  @keyframes fadeZoomIn {
+    0% {
+      opacity: 0;
+      scale: 0.95;
+    }
+    100% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes fadeZoomOut {
+    0% {
+      opacity: 1;
+      scale: 1;
+    }
+    100% {
+      opacity: 0;
+      scale: 0.95;
+    }
+  }
+
   /* animation */
   --animate-fadeIn: fadeIn 0.3s ease-in-out forwards;
   --animate-fadeOut: fadeOut 0.3s ease-in-out forwards;
+  --animate-fadeZoomIn: fadeZoomIn 0.3s ease-in-out forwards;
+  --animate-fadeZoomOut: fadeZoomOut 0.3s ease-in-out forwards;
 }
