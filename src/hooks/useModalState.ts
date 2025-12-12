@@ -1,5 +1,11 @@
 import { useState } from 'react';
 
+export interface ImodalState {
+  active: boolean;
+  handleModalOpen: () => void;
+  handleModalClose: () => void;
+}
+
 const useModalState = () => {
   const [active, setActive] = useState<boolean>(false);
 
